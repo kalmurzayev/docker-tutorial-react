@@ -5,5 +5,15 @@ services:
 before_install:
   - docker build -t azafromkaza/docker-tutorial-react -f Dockerfile.dev .
 
-script:
-  - docker run azafromkaza/docker-tutorial-react npm run test -- --coverage
+deploy:
+  provider: elasticbeanstalk
+  region: "us-east-1"
+  app: "docker-tutorial-react"
+  env: "DockerTutorialReact-env"
+  bucket_name: "elasticbeanstalk-us-east-1-872071562956"
+  bucket_path: "docker-tutorial-react"
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key: 
+    secure: "$AWS_SECRET_KEY"
+  on:
+    branch: master
