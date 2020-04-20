@@ -5,5 +5,5 @@ services:
 before_install:
   - docker build -t azafromkaza/docker-tutorial-react -f Dockerfile.dev .
 
-scripts:
+script:
   - docker run azafromkaza/docker-tutorial-react npm run test -- --coverage
